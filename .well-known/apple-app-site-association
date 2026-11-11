@@ -1,0 +1,18 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["BWGD3486A6.kw.yak.demo"],
+        "components": [
+          { "/": "/q/*", "comment": "join a queue" },
+          { "/": "/c/*", "comment": "get a loyalty card" },
+          { "/": "/t/*", "comment": "a ticket" },
+          { "/": "/k/*", "comment": "a customer's card" }
+        ]
+      }
+    ]
+  },
+  "appclips": {
+    "apps": ["BWGD3486A6.kw.yak.demo.Clip"]
+  }
+}
