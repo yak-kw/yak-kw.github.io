@@ -19,22 +19,15 @@
     <p id="manual" hidden><a id="link" href="#">افتح · Open</a></p>
   </main>
   <script>
-    // Yak's fixed front door: it forwards to the same path on the platform, whose address is in config.json.
-    // Only the path of this site is added to that address, so it can't send anyone to another website.
+    // Yak's old front door: since 14 Nov 2026 the platform lives at its own address, yak-kw.com. Every path
+    // forwards to the same path there, so codes printed with this address keep working. config.json is no
+    // longer read (the PC test platform still rewrites it when it starts; that changes nothing here).
     (function () {
       var path = location.pathname + location.search + location.hash;
-      var manual = document.getElementById('manual');
-      fetch('/config.json?t=' + Date.now(), { cache: 'no-store' })
-        .then(function (r) { return r.json(); })
-        .then(function (cfg) {
-          var base = String(cfg.platform || '').replace(/\/+$/, '');
-          if (!/^https:\/\/[a-z0-9.-]+$/i.test(base)) throw new Error('no platform address');
-          var target = base + (path.charAt(0) === '/' ? path : '/' + path);
-          document.getElementById('link').href = target;
-          location.replace(target);
-          setTimeout(function () { manual.hidden = false; }, 3000);
-        })
-        .catch(function () { manual.hidden = false; });
+      var target = 'https://yak-kw.com' + (path.charAt(0) === '/' ? path : '/' + path);
+      document.getElementById('link').href = target;
+      location.replace(target);
+      setTimeout(function () { document.getElementById('manual').hidden = false; }, 3000);
     })();
   </script>
 </body>
